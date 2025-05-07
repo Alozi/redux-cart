@@ -5,17 +5,17 @@ import classes from './Cart.module.css';
 import CartItem from './CartItem';
 
 const Cart = () => {
-  const cart = useSelector(state => state.cart.items);
-  console.log(cart);
+  const cartItems = useSelector(state => state.cart.items);
+  console.log(cartItems);
 
   return (
     <Card className={classes.cart}>
       <h2>Your Shopping Cart</h2>
       <ul>
-        {cart.length === 0 && <p>Your cart is empty.</p>}
-        {cart.map((item) => {
-          return (<CartItem key={item.title}
-            item={{ title: item.title, quantity: item.quantity, total: item.quantity * item.price, price: item.price }}
+        {cartItems.length === 0 && <p>Your cart is empty.</p>}
+        {cartItems.map((item) => {
+          return (<CartItem key={item.id}
+            item={{ id: item.id, title: item.title, quantity: item.quantity, total: item.totalPrice, price: item.price }}
           />)
         })
         }

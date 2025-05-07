@@ -6,14 +6,14 @@ import { cartActions } from '../../store/cart-slice';
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
-  const { title, quantity, total, price } = props.item;
+  const { id, title, quantity, total, price } = props.item;
 
-  function increaseQuantity() {
-    dispatch(cartActions.increaseQuantity(title));
+  function increaseQuantityHandler() {
+    dispatch(cartActions.increaseQuantity(id));
   }
 
-  function decreaseQuantity() {
-    dispatch(cartActions.decreaseQuantity(title));
+  function decreaseQuantityHandler() {
+    dispatch(cartActions.decreaseQuantity(id));
   }
 
   return (
@@ -30,8 +30,8 @@ const CartItem = (props) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button onClick={decreaseQuantity}>-</button>
-          <button onClick={increaseQuantity}>+</button>
+          <button onClick={decreaseQuantityHandler}>-</button>
+          <button onClick={increaseQuantityHandler}>+</button>
         </div>
       </div>
     </li>

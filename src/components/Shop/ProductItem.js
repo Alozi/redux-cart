@@ -6,13 +6,12 @@ import classes from './ProductItem.module.css';
 import { cartActions } from '../../store/cart-slice';
 
 const ProductItem = (props) => {
-  const { title, price, description } = props;
+  const { id, title, price, totalPrice, description } = props;
   const dispatch = useDispatch();
 
-  function addItemHandler() {
+  function addProductHandler() {
     dispatch(cartActions.addProduct({
-      title,
-      price
+      id, title, price, totalPrice, description
     }));
   }
 
@@ -25,7 +24,7 @@ const ProductItem = (props) => {
         </header>
         <p>{description}</p>
         <div className={classes.actions}>
-          <button onClick={addItemHandler}>Add to Cart</button>
+          <button onClick={addProductHandler}>Add to Cart</button>
         </div>
       </Card>
     </li>
