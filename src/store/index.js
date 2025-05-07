@@ -1,14 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const cartVisibility = createSlice({
-    name: 'cartVisibility',
-    initialState: { isCartShow: false },
-    reducers: {
-        toogle(state) {
-            state.isCartShow = !state.isCartShow
-        }
-    }
-});
+import uiSlice from './ui-slice';
 
 const cart = createSlice({
     name: 'cart',
@@ -53,12 +45,11 @@ const cart = createSlice({
 
 const store = configureStore({
     reducer: {
-        cartVisibility: cartVisibility.reducer,
+        ui: uiSlice.reducer,
         cart: cart.reducer
     }
 });
 
-export const showCartActions = cartVisibility.actions;
 
 export const cartActions = cart.actions;
 
