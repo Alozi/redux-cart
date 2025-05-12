@@ -8,7 +8,7 @@ import Products from './components/Shop/Products';
 import Notification from './components/UI/Notification';
 
 // import { uiActions } from './store/ui-slice';
-import { sendCartData } from './store/cart-slice';
+import { fetchCartData, sendCartData } from './store/cart-actions';
 
 let isInitial = true;
 
@@ -56,6 +56,10 @@ function App() {
   //     }));
   //   });
   // }, [cart, dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
 
   useEffect(() => {
     if (isInitial) {
