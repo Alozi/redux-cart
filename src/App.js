@@ -11,10 +11,27 @@ function App() {
   const cart = useSelector(state => state.cart);
 
   useEffect(() => {
-    fetch('https://redux-cart-e1ef2-default-rtdb.firebaseio.com/cart.json', {
-      method: 'PUT',
-      body: JSON.stringify(cart),
-    });
+    console.log('useEffect');
+    async function sendCartData() {
+      const response = await fetch('https://redux-cart-e1ef2-default-rtdb.firebaseio.com/cart.json', {
+        method: 'PUT',
+        body: JSON.stringify(cart),
+      });
+
+      console.log('response');
+      console.log(response);
+
+      if (!response.ok) {
+        console.log('error');
+        throw new Error('Sending cart data failed.');
+      }
+
+      const responseData = await response.json();
+      console.log('responseData');
+      console.log(responseData);
+    }
+
+    sendCartData();
   }, [cart]);
 
   return (
